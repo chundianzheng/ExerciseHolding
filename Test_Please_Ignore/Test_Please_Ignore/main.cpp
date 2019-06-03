@@ -73,5 +73,6 @@ int main() {
     if (count == -1){
         cout << "您输入的值不存在" << endl;
     }
+    return 0;
 }
 // Test.
