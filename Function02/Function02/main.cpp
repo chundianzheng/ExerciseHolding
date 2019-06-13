@@ -7,13 +7,21 @@
 //
 
 #include <iostream>
+#include "Header.h"
 
 using namespace std;
 
-void output(double **, int, int);
-
-int main() {
-
+int main(){
+    int m, n;
+    cout << "请输入矩阵维度，m行n列：";
+    cin >> m >> n;
+    int **a;
+    a = new int* [m];
+    for (int i = 0; i < m; i++){
+        a[i] = new int[n];
+    }
+    input(a, m, n);
+    output(a, m, n);
+    delete a;
     return 0;
 }
-
