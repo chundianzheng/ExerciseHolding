@@ -7,14 +7,13 @@
 //
 
 #include <iostream>
-#include "Header.h"
+
+using namespace std;
+
+void output(double **, int, int);
 
 int main() {
 
-    int values[5];
-    int len = sizeof(values)/sizeof(int);
-    input(values, &len);
-    output(values, values + len - 1);
-    
     return 0;
 }
+
