@@ -2,93 +2,55 @@
 //  main.cpp
 //  Test_Please_Ignore
 //
-//  Created by Chundian Zheng on 6/13/19.
+//  Created by Chundian Zheng on 7/3/19.
 //  Copyright © 2019 Chundian Zheng. All rights reserved.
 //
 
 #include <iostream>
-#include <cmath>
-#include <iomanip>
 
 using namespace std;
 
-double sum(double, double);
-double cuboid_vol(double, double, double);
-double cylinder_vol(double, double);
-double cone_vol(double, double);
+string chatTo(const string& toName, const string& content);
+string chatFrom(const string& fromName, const string& content);
 
 int main(){
-    cout.precision(2);
-    for (int j = 0; j < INFINITY; j++){
-    int choice = 0;
-    cout << "欢迎使用本软件！\n\n1.计算两数之和\n2.计算长方形的体积\n3.计算圆柱体的体积\n4.计算圆锥体的体积\n5.退出\n" << endl;
+    int trans;
+    cout << "1. 发送消息\n2. 接收消息\n" << endl;
+    cin >> trans;
     for (int i = 0; i < INT_MAX; i++){
-        int temp;
-        cin >> temp;
-        if ((temp == 1) || (temp == 2) || (temp == 3) || (temp == 4) || (temp == 5)){
-            choice = temp;
+        if (trans == 1){
+            cout << "请输入好友名称：";
+            string toName, content, toMsg;
+            cin >> toName;
+            cout << "请输入聊天内容：";
+            cin >> content;
+            toMsg = chatTo(toName, content);
+            cout << toMsg << endl;
+            break;
+        }else if (trans == 2){
+            cout << "请输入好友名称：";
+            string fromName, content, toMsg;
+            cin >> fromName;
+            cout << "请输入聊天内容：";
+            cin >> content;
+            toMsg = chatFrom(fromName, content);
+            cout << toMsg << endl;
             break;
         }else{
-            cout << "请重新输入！\n" << endl;
+            cout << "请重新输入：";
+            cin >> trans;
         }
     }
-    if (choice == 1) {
-        cout << "请输入两个数：";
-        double num1, num2;
-        cin >> num1 >> num2;
-        double s = sum(num1, num2);
-        cout << "两数之和为：" << fixed << s << endl;
-        cout << endl;
-    }else if (choice == 2){
-        cout << "请出入长方体的长宽高：";
-        double length, width, height;
-        cin >> length >> width >> height;
-        double v = cuboid_vol(length, width, height);
-        cout << "长方体的体积为：" << fixed << v << endl;
-        cout << endl;
-    }else if (choice == 3){
-        cout << "请输入圆柱体的半径与高：";
-        double radius, height;
-        cin >> radius >> height;
-        double v = cylinder_vol(radius, height);
-        cout << "圆柱体的体积为：" << fixed << v << endl;
-        cout << endl;
-    }else if (choice == 4){
-        cout << "请输入圆锥体的半径与高：";
-        double radius, height;
-        cin >> radius >> height;
-        double v = cone_vol(radius, height);
-        cout << "圆锥体的体积为：" << fixed << v << endl;
-        cout << endl;
-    }else{
-        break;
-    }
-    }
-    return 0;
 }
 
-//两数之和
-double sum(double sum1, double sum2){
-    double result = sum1 + sum2;
-    return result;
+string chatTo(const string& toName, const string& content)
+{
+    string msg = "❇︎ 你悄悄地对「" + toName + "」说：" + content;
+    return msg;
 }
 
-//长方形的体积
-double cuboid_vol(double length, double width, double height){
-    double volume = length * width * height;
-    return volume;
-}
-
-//圆柱体的体积
-double cylinder_vol(double radius, double height){
-    double pi = atan(1.0);
-    double volume = pi * pow(radius, 2) * height;
-    return volume;
-}
-
-//圆锥体的体积
-double cone_vol(double radius, double height){
-    double pi = atan(1.0) / 3;
-    double volume = pi * pow(radius, 2) * height;
-    return volume;
+string chatFrom(const string& fromName, const string& content)
+{
+    string msg = "❇︎ 「" + fromName + "」悄悄地对你说：" + content;
+    return msg;
 }
